@@ -1,5 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { LinksCollection } from '/imports/api/links';
+import { TasksCollection } from '/imports/api/TasksCollection';
+
+const insertTask = taskText => TasksCollection.insert({ text: taskText });
 
 function insertLink({ title, url }) {
   LinksCollection.insert({title, url, createdAt: new Date()});
@@ -27,5 +30,16 @@ Meteor.startup(() => {
       title: 'Discussions',
       url: 'https://forums.meteor.com'
     });
+  }
+  if (TasksCollection.find().count() === 0) {
+    [
+      'First Task',
+      'Second Task',
+      'Third Task',
+      'Fourth Task',
+      'Fifth Task',
+      'Sixth Task',
+      'Seventh Task'
+    ].forEach(insertTask)
   }
 });

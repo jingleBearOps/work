@@ -4,9 +4,16 @@ import { LinksCollection } from '../api/links';
 
 export const Info = () => {
   const links = useTracker(() => {
+    console.log("cursor after ");
+    console.log(LinksCollection.find());
+    console.log("after fetch")
+    console.log(LinksCollection.find().fetch());
+
+
     return LinksCollection.find().fetch();
   });
-
+  console.log("Testing links");
+  console.log(links);
   return (
     <div>
       <h2>Learn Meteor!</h2>
